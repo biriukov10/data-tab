@@ -2,21 +2,6 @@
 
 let d = document;
 
-function setTabElem() {
-  let liElem = d.createElement('li'),
-    count = d.querySelectorAll('.tabs a').length,
-    linkElem = d.createElement('a'),
-    ulList = d.querySelector('.tabs');
-  liElem.setAttribute('data-tab', '3');
-  liElem.appendChild(linkElem);
-  linkElem.setAttribute('href', '#');
-  count++;
-  linkElem.textContent = 'Part ' + count;
-  ulList.appendChild(liElem);
-}
-setTabElem();
-
-
 function setPanelText() {
   let divElem = d.createElement('div'),
     tabsContent = d.querySelector('.tabs-content'),
@@ -29,8 +14,28 @@ function setPanelText() {
   tabsContent.appendChild(divElem);
 }
 setPanelText();
+
 let tabLinks = d.querySelector('.tabs'), // Обьявля список ul
-  tabPanels = d.querySelectorAll('.tabs-panel'); // Обьявляем все блоки с содержимым 
+  tabPanels = d.querySelectorAll('.tabs-panel'),  // Обьявляем все блоки с содержимым 
+  liElem = d.querySelectorAll('li');
+
+function setTabElem(a) {
+  for (let i = a; i < liElem.length; i++) {
+    let liElem = d.createElement('li'),
+      count = d.querySelectorAll('.tabs a').length,
+      linkElem = d.createElement('a'),
+      ulList = d.querySelector('.tabs');
+    liElem.setAttribute('data-tab', '3');
+    liElem.appendChild(linkElem);
+    linkElem.setAttribute('href', '#');
+    count++;
+    linkElem.textContent = 'Part ' + count;
+    ulList.appendChild(liElem);
+  }
+
+}
+setTabElem(1);
+
 
 tabLinks.addEventListener('click', function (e) {
   e.preventDefault();
