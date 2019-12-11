@@ -15,40 +15,39 @@ function setPanelText() {
 }
 setPanelText();
 
-let tabLinks = d.querySelector('.tabs'), // Обьявля список ul
+let tab = d.querySelector('.tabs'), // Обьявля список ul
   tabPanels = d.querySelectorAll('.tabs-panel'),  // Обьявляем все блоки с содержимым 
   liElem = d.querySelectorAll('li');
 
 function setTabElem(a) {
   for (let i = a; i < liElem.length; i++) {
-    let liElem = d.createElement('li'),
+    let liTabsElem = d.createElement('li'),
       count = d.querySelectorAll('.tabs a').length,
       linkElem = d.createElement('a'),
       ulList = d.querySelector('.tabs');
-    liElem.setAttribute('data-tab', '3');
-    liElem.appendChild(linkElem);
+    liTabsElem.setAttribute('data-tab', '3');
+    liTabsElem.appendChild(linkElem);
     linkElem.setAttribute('href', '#');
     count++;
     linkElem.textContent = 'Part ' + count;
-    ulList.appendChild(liElem);
+    ulList.appendChild(liTabsElem);
   }
-
 }
 setTabElem(1);
 
 
-tabLinks.addEventListener('click', function (e) {
+tab.addEventListener('click', function (e) {
   e.preventDefault();
   if (e.target.closest('ul')) {
     // dataTab - Номер вкладки которую нужно отобразить
     let dataTab = e.target.closest('li').getAttribute('data-tab');
     let tabLi = d.querySelectorAll('li');
     for (let i = 0; i < tabLi.length; i++) {
-      if (tabLi[i].classList.toggle('active')) {
+      if (tabLi[i].classList.toggle('active')) { // если класса нет, добавляем, если есть, удаляем
         tabLi[i].classList.remove('active');
       }
     }
-    e.target.closest('li').classList.add('active');
+    e.target.closest('li').classList.add('active'); // При нажатии на tab добавляем класс active
     for (let i = 0; i < tabPanels.length; i++) {
       if (dataTab == i) {
         tabPanels[i].classList.add('active');
